@@ -6,15 +6,13 @@ import CreatureService from "../service/CreatureService";
 import CreatureList from "./CreatureList";
 
 
-const creatureService = new creatureService();
+const creatureService = new CreatureService();
 
 const Creatures = () => {
     const [data, setData] = useState ([]);
 
     const getCreatures = async () => {
-        const data = await creatureService.getCreatures().data;
-
-
+        const data = await creatureService.getCreatures();
         setData(data);
     }
 

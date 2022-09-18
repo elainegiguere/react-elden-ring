@@ -11,24 +11,13 @@ const creatureService = new CreatureService();
 
 const DEFAULT_IMAGE_POSITION = "top";
 
-const CreatureCard =({ creature, url }) =>{
-    const [ data, setData] = useState(null);
-    const [shouldShow, setShouldshow] = useState(true);
-
-    const hide = () => setShouldshow(false);
-
-    const getCreature =async () =>
-        setData (await creatureService.getCreatureWithReturnedUrl(url));
-
-    useEffect(() => {
-        if (url) getCreature();
-    }, [url]);
-
+const CreatureCard =({ creature }) =>{
+   
     return(
-        data && shouldShow && (
-        <Col className="my-3">
+       
+        <Col className=" my-3">
             <Card>
-                <BCard.Header as= "small">{creature.id}<button onClick={hide}>Close</button></BCard.Header> 
+                <BCard.Header as= "small">{creature.id}</BCard.Header> 
                 <BCard.Body>
                     <BCard.Img
                     variant= {DEFAULT_IMAGE_POSITION}
@@ -39,7 +28,7 @@ const CreatureCard =({ creature, url }) =>{
                 <BCard.Title>{creature.name}</BCard.Title>
             </Card>
         </Col>
-        )
+       
     );
 };
 

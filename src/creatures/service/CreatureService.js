@@ -7,15 +7,14 @@ class CreatureService {
         try{
             const response = await fetch (this.url);
             if(!response.ok) throw new Error (response.status);
-            const data = await response.json();
+            const creatures = await response.json();
 
-            return data.data;
+            return creatures.data;
         } catch (e){
             console.error(e);
 
-            return {
-                data:[],
-            };
+            return [];
+            
         }
     }
     

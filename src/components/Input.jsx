@@ -1,18 +1,27 @@
 import React from 'react'
 import Form from "react-bootstrap/Form";
-import { useField } from “formik”;
+import { useField } from "formik";
+import { FormControl, FormLabel } from 'react-bootstrap';
 
 
 
-const Input = ({value, onChange, id, type = "text", ...rest}) => {
-  const handelChange = (event) => {
-    const value = event.target.value;
+const Input = ({label, id, type = "text", ...rest}) => {
+  const [field, meta] = useField(id);
+  const isError = meta.touched && meta.error;
+   
 
-    onChange(value,id);
-  }
+  return (
+<Form.FormGroup>
+  {label && <Form.Label>{label}</Form.Label>}
+   <Form.Control 
+    isInvalid={isError}
+    type ={type} {...field} {...rest}/>
 
-  return  <input id= {id} value ={value} type ={type} onChange={handleChange} {...rest}/>;
-  
+   { isError && (
+   <Form.Control.Feedback>{meta.error}</Form.Control.Feedback>
+   )}
+   </Form.FormGroup>
+   );
 };
 
 export default Input
